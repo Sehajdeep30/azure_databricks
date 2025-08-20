@@ -6,7 +6,7 @@ SELECT driver_name,
   FROM formula1_gold.calculated_race_results
 GROUP BY driver_name
 HAVING COUNT(1) >= 50
-ORDER BY avg_points DESC
+ORDER BY avg_points
 
 -- COMMAND ----------
 
