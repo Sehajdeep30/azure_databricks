@@ -1,0 +1,1 @@
+-- SELECT * FROM customer_sales_summary_view

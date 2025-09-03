@@ -20,9 +20,36 @@ display(spark.sql("SELECT * FROM vsarthi_ws.default.sample_trips_proj1_pipeline"
 
 # COMMAND ----------
 
-loc = dbutils.widgets.get("ingestion_loc")
+print(dbutils.fs.ls(f"abfss://ingestion@proj1sta.dfs.core.windows.net/customers/"))
 
 
 # COMMAND ----------
 
-print(loc)
+# %sql 
+# DROP TABLE IF EXISTS vsarthicat.proj1_pipeline.customer_stg
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC USE CATALOG vsarthicat;
+# MAGIC USE SCHEMA proj1_pipeline;
+# MAGIC
+
+# COMMAND ----------
+
+"vsarthicat.proj1_pipeline.customer_stg".printSchema()
+
+# COMMAND ----------
+
+# MAGIC %sql 
+# MAGIC DESC vsarthicat.proj1_pipeline.customer_stg
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC SELECT * FROM vsarthicat.proj1_pipeline.products_stg
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC SELECT * FROM vsarthicat.proj1_pipeline.customer_silver;
