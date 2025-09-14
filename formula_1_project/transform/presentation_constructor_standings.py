@@ -4,7 +4,7 @@
 
 # COMMAND ----------
 
-dbutils.widgets.text("p_file_date", "2021-03-28")
+dbutils.widgets.text("p_file_date", "2021-03-21")
 v_file_date = dbutils.widgets.get("p_file_date")
 
 # COMMAND ----------
@@ -56,17 +56,21 @@ final_df = constructor_standings_df.withColumn("rank", rank().over(constructor_r
 # COMMAND ----------
 
 merge_condition = "tgt.team = src.team AND tgt.race_year = src.race_year"
-merge_delta_data(final_df, 'formula1_constructors', 'constructor_standings', merge_condition, 'race_year')
+merge_delta_data(final_df, 'formula1_gold', 'constructor_standings', merge_condition, 'race_year')
 
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC SELECT * FROM formula1_gold.constructor_standings WHERE race_year = 2021;
+# MAGIC SELECT * FROM formula1_gold.constructor_standings;
 
 # COMMAND ----------
 
 # MAGIC %sql
 # MAGIC SELECT race_year, COUNT(1)
-# MAGIC   FROM f1_presentation.constructor_standings
+# MAGIC   FROM formula1_gold.constructor_standings
 # MAGIC  GROUP BY race_year
 # MAGIC  ORDER BY race_year DESC;
+
+# COMMAND ----------
+
+
